@@ -9,3 +9,8 @@ version:
 # запустить исполняемый файл app с двумя параметрами
 run-dist:
 	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
+
+build:
+
+
+.PHONY: build
