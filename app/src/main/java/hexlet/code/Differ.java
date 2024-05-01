@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,21 +10,18 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
-    public static String generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filePath1, String filePath2) throws Exception {
 
-        Map<String, Object> data1 = getData(getContent(filepath1));
-        Map<String, Object> data2 = getData(getContent(filepath2));
+        Map<String, Object> data1 = getData(getContent(filePath1), getInputFormat(filePath1));
+        Map<String, Object> data2 = getData(getContent(filePath2), getInputFormat(filePath2));
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
 
-//        System.out.println(keys);
+        StringBuilder result = new StringBuilder("{\n");
 
-        StringBuilder result = new StringBuilder();
-        result.append("{\n");
-
-        for (var key : keys) {
+        for (String key : keys) {
             if (data1.containsKey(key) && data2.containsKey(key)) {
                 if (data1.get(key).equals(data2.get(key))) {
                     result.append("    ").append(key).append(": ").append(data1.get(key)).append("\n");
@@ -42,20 +40,16 @@ public class Differ {
         return result.toString();
     }
 
-    private static String getContent(String filepath) throws Exception {
-        try {
-            Path path = Paths.get(filepath).toAbsolutePath().normalize();
-            return Files.readString(path);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+    private static String getContent(String filePath) throws IOException {
+        Path path = Paths.get(filePath).toAbsolutePath().normalize();
+        return Files.readString(path);
     }
 
-    private static Map<String, Object> getData(String content) throws Exception {
-        try {
-            return Parser.parseJson(content);
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+    private static String getInputFormat(String filePath) {
+        return filePath.split("\\.")[1];
+    }
+
+    private static Map<String, Object> getData(String content, String inputFormat) throws Exception {
+        return Parser.parse(content, inputFormat);
     }
 }
