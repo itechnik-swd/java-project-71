@@ -12,8 +12,8 @@ import java.util.TreeSet;
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
 
-        Map<String, Object> data1 = getData(getContent(filePath1), getInputFormat(filePath1));
-        Map<String, Object> data2 = getData(getContent(filePath2), getInputFormat(filePath2));
+        Map<String, Object> data1 = Parser.parse(getContent(filePath1), getInputFormat(filePath1));
+        Map<String, Object> data2 = Parser.parse(getContent(filePath2), getInputFormat(filePath2));
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(data1.keySet());
@@ -47,9 +47,5 @@ public class Differ {
 
     private static String getInputFormat(String filePath) {
         return filePath.split("\\.")[1];
-    }
-
-    private static Map<String, Object> getData(String content, String inputFormat) throws Exception {
-        return Parser.parse(content, inputFormat);
     }
 }
