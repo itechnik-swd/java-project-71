@@ -32,6 +32,6 @@ public class Differ {
         return Files.readString(path);
     }
     private static String getInputFormat(String filePath) {
-        return filePath.split(".")[1];
+        return filePath.split("\\.")[1];
     }
 }

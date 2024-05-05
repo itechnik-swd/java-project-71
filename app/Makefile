@@ -1,8 +1,8 @@
 install-with-json:
-	./build/install/app/bin/app src/test/resources/flat/file1.json src/test/resources/flat/file2.json
+	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
 
 install-with-yaml:
-	./build/install/app/bin/app src/test/resources/flat/file1.yml src/test/resources/flat/file2.yml
+	./build/install/app/bin/app src/test/resources/file1.json src/test/resources/file2.json
 
 run-dist:
 	./build/install/app/bin/app
