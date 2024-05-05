@@ -11,8 +11,10 @@ import java.util.TreeSet;
 public class Comparator {
     public static List<Map<String, Object>> compareFiles(Map<String, Object> data1, Map<String, Object> data2) {
         List<Map<String, Object>> resultList = new ArrayList<>();
+
         Set<String> keySet = new TreeSet<>(data1.keySet());
         keySet.addAll(data2.keySet());
+
         for (String key: keySet) {
             Map<String, Object> result = new LinkedHashMap<>();
             if (data1.containsKey(key) && !data2.containsKey(key)) {

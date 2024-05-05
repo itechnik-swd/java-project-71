@@ -8,6 +8,7 @@ public class Stylish {
 
     public static String stylishResult(List<Map<String, Object>> comparisonResult) throws Exception {
         result = new StringBuilder("{\n");
+
         for (Map<String, Object> map: comparisonResult) {
             switch ((String) map.get("status")) {
                 case "unmodified" -> basicString(map, "oldvalue", "    ");
@@ -20,7 +21,8 @@ public class Stylish {
                 default -> throw new Exception("Unknown status: " + "status");
             }
         }
-        return result.append("}").toString();
+        result.append("}");
+        return result.toString();
     }
 
     private static void basicString(Map<String, Object> map, String value, String diff) {

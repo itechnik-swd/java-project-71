@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Plain {
-
     public static String plainResult(List<Map<String, Object>> comparisonResult) throws Exception {
         StringBuilder result = new StringBuilder();
 

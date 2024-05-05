@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Formatter {
 
-    public static String formatChoice(final List<Map<String, Object>> comparisonResult, String format)
+    public static String formatChoice(List<Map<String, Object>> comparisonResult, String format)
             throws Exception {
         return switch (format) {
             case "stylish" -> Stylish.stylishResult(comparisonResult);

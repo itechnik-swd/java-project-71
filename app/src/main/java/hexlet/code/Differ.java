@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) throws Exception {
         Map<String, Object> data1 = read(filePath1);
@@ -23,8 +22,8 @@ public class Differ {
     }
 
     private static Map<String, Object> read(String filePath) throws Exception {
-        String inputFormat = getInputFormat(filePath);
         String content = getContent(filePath);
+        String inputFormat = getInputFormat(filePath);
         return Parser.parse(content, inputFormat);
     }
 

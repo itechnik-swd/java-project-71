@@ -6,9 +6,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.util.TreeMap;
 
-
 public class Parser {
-
     public static TreeMap<String, Object> parse(String content, String format) throws Exception {
         ObjectMapper objectMapper = chooseFormat(format);
         return objectMapper.readValue(content, new TypeReference<>() { });
@@ -18,7 +16,7 @@ public class Parser {
         return switch (format) {
             case "json" -> new ObjectMapper();
             case "yml", "yaml" -> new ObjectMapper(new YAMLFactory());
-            default -> throw new Exception("Format is unknown " + format);
+            default -> throw new Exception(format + " is unknown format");
         };
     }
 }
