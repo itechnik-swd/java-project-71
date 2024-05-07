@@ -9,13 +9,14 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Comparator {
-    public static List<Map<String, Object>> compareFiles(Map<String, Object> data1, Map<String, Object> data2) {
+    public static List<Map<String, Object>> compareFiles(Map<String, Object> data1,
+                                                         Map<String, Object> data2) throws Exception {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
-        Set<String> keySet = new TreeSet<>(data1.keySet());
-        keySet.addAll(data2.keySet());
+        Set<String> keysSet = new TreeSet<>(data1.keySet());
+        keysSet.addAll(data2.keySet());
 
-        for (String key: keySet) {
+        for (String key: keysSet) {
             Map<String, Object> result = new LinkedHashMap<>();
             if (data1.containsKey(key) && !data2.containsKey(key)) {
                 result.put("key", key);
@@ -30,11 +31,13 @@ public class Comparator {
                 result.put("oldvalue", data1.get(key));
                 result.put("newvalue", data2.get(key));
                 result.put("status", "unmodified");
-            } else {
+            } else if (!Objects.equals(data1.get(key), (data2.get(key)))) {
                 result.put("key", key);
                 result.put("oldvalue", data1.get(key));
                 result.put("newvalue", data2.get(key));
                 result.put("status", "updated");
+            } else {
+                throw new Exception();
             }
             resultList.add(result);
         }
