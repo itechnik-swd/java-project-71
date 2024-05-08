@@ -12,21 +12,21 @@ public class Plain {
                 case "updated" -> result.append("Property '")
                         .append(map.get("key"))
                         .append("' was updated. From ")
-                        .append(showValue(map.get("oldvalue")))
+                        .append(showValue(map.get("oldValue")))
                         .append(" to ")
-                        .append(showValue(map.get("newvalue")))
+                        .append(showValue(map.get("newValue")))
                         .append("\n");
                 case "added" -> result.append("Property '")
                         .append(map.get("key"))
                         .append("' was added with value: ")
-                        .append(showValue(map.get("newvalue")))
+                        .append(showValue(map.get("newValue")))
                         .append("\n");
                 case "removed" -> result.append("Property '")
                         .append(map.get("key"))
                         .append("' was removed")
                         .append("\n");
                 case "unmodified" -> { }
-                default -> throw new Exception("Unknown status: " + "format");
+                default -> throw new Exception("Unknown status: " + map.get("status"));
             }
         }
         result.deleteCharAt(result.length() - 1);

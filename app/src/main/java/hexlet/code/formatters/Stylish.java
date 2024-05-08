@@ -11,13 +11,13 @@ public class Stylish {
 
         for (Map<String, Object> map: comparisonResult) {
             switch ((String) map.get("status")) {
-                case "unmodified" -> basicString(map, "oldvalue", "    ");
+                case "unmodified" -> basicString(map, "oldValue", "    ");
                 case "updated" -> {
-                    basicString(map, "oldvalue", "  - ");
-                    basicString(map, "newvalue", "  + ");
+                    basicString(map, "oldValue", "  - ");
+                    basicString(map, "newValue", "  + ");
                 }
-                case "removed" -> basicString(map, "oldvalue", "  - ");
-                case "added" -> basicString(map, "newvalue", "  + ");
+                case "removed" -> basicString(map, "oldValue", "  - ");
+                case "added" -> basicString(map, "newValue", "  + ");
                 default -> throw new Exception("Unknown status: " + "status");
             }
         }
