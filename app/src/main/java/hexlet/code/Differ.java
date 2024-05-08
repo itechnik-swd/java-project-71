@@ -12,7 +12,7 @@ public class Differ {
         Map<String, Object> data1 = read(filePath1);
         Map<String, Object> data2 = read(filePath2);
 
-        List<Map<String, Object>> comparisonResult = Comparator.compareFiles(data1, data2);
+        List<Map<String, Object>> comparisonResult = Comparison.compareFiles(data1, data2);
 
         return Formatter.formatChoice(comparisonResult, format);
     }
